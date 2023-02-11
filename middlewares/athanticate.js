@@ -40,7 +40,6 @@ const redis = new Redis({
 
 
 
-// using redis now i am geting token
 const authanticate = (req, res, next) => {
    redis.get('blacklist',(err,blacklist)=>{
       if(err){
@@ -74,7 +73,7 @@ const authanticate = (req, res, next) => {
   
 }
 
-// using redis now i am geting token
+
 const authanticate_login = (req, res, next) => {
    redis.get('blacklist',(err,blacklist)=>{
       if(err){

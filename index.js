@@ -88,43 +88,6 @@ app.get('/auth/google/callback',
         // res.sendFile('/')
     });
 
-
-
-
-//   const refreshtoken=1//04fCL-S-poCNeCgYIARAAGAQSNwF-L9IrlKnnOdiaJY1VQwjSd3n0bJW9_oROAIOEs9qbfjg8HHIA8kgl2E7Pz-ceF5xxfwSxrLs
-// const access_token='ya29.a0AX9GBdWhhPom-mzKAuOCSs1mwAiew2TweVm6K4tI9eaa_OP71gXnzGzCMTt7lKPG_2KleR-8L5jRpmDTczT1F1h7vNmH_YncBwYYwnFJDxFwEjJkiiiK5dTEBDMu1255eYucArrPFYyKW1RIMi1X85hZ7KmsaCgYKATISARMSFQHUCsbCWW9NYcSKdIt3AfNJuqW5-w0163'
-
-// const secure_configuration = require('./secure');
-
-// const transporter = nodemailer.createTransport({
-// service: 'gmail',
-// auth: {
-// 	type: 'OAuth2',
-// 	user: 'a',
-// 	pass: '',
-// }
-// });
-
-// const mailConfigurations = {
-// 	from: 'ankeshkewat966@gmail.com',
-// 	to: 'harnam01011983@gmail.com',
-// 	subject: 'Sending Email using Node.js',
-// 	text: 'Hi! There, You know I am using the NodeJS '
-// 	+ 'Code along with NodeMailer to send this email.'
-// };
-	
-// transporter.sendMail(mailConfigurations, function(error, info){
-// 	if(error){
-//         console.log(error)
-//     }else{
-//         console.log(info);
-//         console.log('email sent successfully')
-//     }
-// });
-
-
-
-
 app.listen(process.env.port, async () => {
     try {
         await connection;
