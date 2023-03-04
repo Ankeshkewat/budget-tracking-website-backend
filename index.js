@@ -54,7 +54,7 @@ app.get('/auth/google/callback',
 
 
 app.get('/login/github', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile('https://wondrous-biscuit-d5ba9b.netlify.app/signup.html')
 })
 
 app.get('/auth/github', async (req, res) => {
