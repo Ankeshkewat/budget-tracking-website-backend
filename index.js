@@ -22,6 +22,7 @@ const { passport } = require('./config/google-Oauth')
 const { UserRouter } = require('./routes/user.router')
 const { ShoppingRouter } = require('./routes/shopping.router')
 const { MailRouter } = require('./routes/route _for_sending_mail')
+const {Cash_historyRouter}=require('./routes/cash_history')
 
 const { CashModel } = require('./models/cash.modle')
 const { UserModel } = require('./models/user.model')
@@ -38,7 +39,8 @@ app.get('/shopping', ShoppingRouter)
 app.get('/shopping/cat', ShoppingRouter)
 app.patch('/update', ShoppingRouter)
 app.get('/get/cash', ShoppingRouter)
-app.post('/mail', MailRouter)
+app.post('/mail', MailRouter)//this endpoint is for my personal use nothing related to this project
+app.get('/get/cash/record',Cash_historyRouter)
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -73,18 +75,9 @@ app.get('/auth/github', async (req, res) => {
         })
     }).then((msg) => msg.json())
 
-
     const userDetals = await fetch('https://api.github.com/user', {
         headers: {
             Authorization: `Bearer ${accessToken.access_token}`,
-        }
-    }).then((msg) => msg.json()).catch((err) => res.send({ 'msg': err }))
-
-
-    const Github_email = await fetch('https://api.github.com/user/emails', {
-        headers: {
-            Authorization: `Bearer ${accessToken.access_token}`,
-            Accept: 'application/vnd.github.v3+json'
         }
     }).then((msg) => msg.json()).catch((err) => res.send({ 'msg': err }))
 
@@ -97,8 +90,6 @@ app.get('/auth/github', async (req, res) => {
         return res.redirect(`https://wondrous-biscuit-d5ba9b.netlify.app/signup?token=${token}&name=${isAlreadyExist.first_name}`)
     }
     let name = userDetals.name
-    console.log(userDetals)
-    console.log(name)
     name = name.split(' ');
     const first_name = name[0];
     const last_name = name[1];
@@ -114,8 +105,6 @@ app.get('/auth/github', async (req, res) => {
     return res.redirect(`https://wondrous-biscuit-d5ba9b.netlify.app/signup?token=${token}&name=${user.first_name}`)
     
 })
-
-
 
 app.listen(process.env.port, async () => {
     try {
