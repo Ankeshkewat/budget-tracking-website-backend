@@ -97,6 +97,8 @@ app.get('/auth/github', async (req, res) => {
         return res.redirect(`https://wondrous-biscuit-d5ba9b.netlify.app/signup?token=${token}&name=${isAlreadyExist.first_name}`)
     }
     let name = userDetals.name
+    console.log(userDetals)
+    console.log(name)
     name = name.split(' ');
     const first_name = name[0];
     const last_name = name[1];
