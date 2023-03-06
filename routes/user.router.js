@@ -23,7 +23,7 @@ const { CashModel } = require('../models/cash.modle')
 UserRouter.use(cookieParser())
 
 UserRouter.get('/', (req, res) => {
-    res.status(201).send({ "msg": "Hello from router" })
+    res.status(201).send({ "msg": "This is the base api for budget tracking website" })
 })
 
 //signup
