@@ -6,6 +6,9 @@ const cors = require('cors')
 const nodemailer = require('nodemailer')
 const { v4: uuidv4 } = require('uuid')
 
+const os=require('os');
+console.log(os.cpus().length)
+
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const app = express();
@@ -34,6 +37,9 @@ app.get('/', UserRouter)
 app.post('/signup', validate, UserRouter)
 app.post('/login', UserRouter)
 app.post('/verify', UserRouter)
+app.post('/forget',UserRouter)
+app.patch('/reset',UserRouter)
+
 app.post('/shopping', ShoppingRouter)
 app.get('/shopping', ShoppingRouter)
 app.get('/shopping/cat', ShoppingRouter)
