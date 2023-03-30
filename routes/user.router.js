@@ -195,7 +195,7 @@ UserRouter.post('/forget',async(req,res)=>{
                     from: 'ankeshkewat966@gmail.com',
                     to: email,
                     subject: 'Password reset link',
-                    text: `https://wondrous-biscuit-d5ba9b.netlify.app/forget.html/token=${token}`
+                    text: `https://wondrous-biscuit-d5ba9b.netlify.app/forget.html/?token=${token}`
                 };
 
                 transporter.sendMail(mailConfigurations, async function (error, info) {
