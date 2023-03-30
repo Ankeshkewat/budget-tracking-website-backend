@@ -222,9 +222,10 @@ UserRouter.post('/forget',async(req,res)=>{
 
 UserRouter.patch('/reset',async(req,res)=>{
     try{
-        const {password,c_password}=req.body;
+        const {password,c_password,token}=req.body;
         if(password!=c_password) return res.status(401).send({'msg':"Password did not match"});
         else{
+            const {email}=jwt.decode(token)
             await UserModel.findOneAndUpdate({email},{$set:{password:password}})
             res.status(200).json({"msg":"Password updated"})
         }
