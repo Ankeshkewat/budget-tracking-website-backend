@@ -231,7 +231,7 @@ UserRouter.patch('/reset',async(req,res)=>{
                     console.log(err);
                     res.status(500).send({ 'msg': "Something went wrong" })
                 }else{
-                    await UserModel.findOneAndUpdate({email},{$set:{password:password}})
+                    await UserModel.findOneAndUpdate({email},{$set:{password:success}})
                     res.status(200).json({"msg":"Password updated"})
                 }
             })
