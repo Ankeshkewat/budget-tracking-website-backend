@@ -226,8 +226,15 @@ UserRouter.patch('/reset',async(req,res)=>{
         if(password!=c_password) return res.status(401).send({'msg':"Password did not match"});
         else{
             const {email}=jwt.decode(token)
-            await UserModel.findOneAndUpdate({email},{$set:{password:password}})
-            res.status(200).json({"msg":"Password updated"})
+            bcrypt.hash(password,6,async(err,success)=>{
+                if (err) {
+                    console.log(err);
+                    res.status(500).send({ 'msg': "Something went wrong" })
+                }else{
+                    await UserModel.findOneAndUpdate({email},{$set:{password:password}})
+                    res.status(200).json({"msg":"Password updated"})
+                }
+            })
         }
     }
     catch(err){
