@@ -7,7 +7,6 @@ const nodemailer = require('nodemailer')
 const { v4: uuidv4 } = require('uuid')
 
 const os=require('os');
-console.log(os.cpus().length)
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
@@ -31,6 +30,7 @@ const { CashModel } = require('./models/cash.modle')
 const { UserModel } = require('./models/user.model')
 
 const { validate } = require('./middlewares/athanticate')
+const {authanticate}=require('./middlewares/athanticate')
 
 
 app.get('/', UserRouter)
@@ -40,13 +40,13 @@ app.post('/verify', UserRouter)
 app.post('/forget',UserRouter)
 app.patch('/reset',UserRouter)
 
-app.post('/shopping', ShoppingRouter)
-app.get('/shopping', ShoppingRouter)
-app.get('/shopping/cat', ShoppingRouter)
-app.patch('/update', ShoppingRouter)
-app.get('/get/cash', ShoppingRouter)
+app.post('/shopping',authanticate, ShoppingRouter)
+app.get('/shopping',authanticate, ShoppingRouter)
+app.get('/shopping/cat',authanticate, ShoppingRouter)
+app.patch('/update',authanticate, ShoppingRouter)
+app.get('/get/cash',authanticate, ShoppingRouter)
 app.post('/mail', MailRouter)//this endpoint is for my personal use nothing related to this project
-app.get('/get/cash/record',Cash_historyRouter)
+app.get('/get/cash/record',authanticate,Cash_historyRouter)
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
